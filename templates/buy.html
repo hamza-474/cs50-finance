@@ -1,1 +1,25 @@
-{% extends "layout.html" %}{% block title %}    Buy{% endblock %}{% block main %}    <form action="/buy" method="post">        <div class="mb-3">            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="symbol" placeholder="Symbol" type="text">        </div>        <div class="mb-3">            <input autocomplete="off" class="form-control mx-auto w-auto" min="1" name="shares" placeholder="Shares" type="number">        </div>        <button class="btn btn-primary" type="submit">Buy</button>    </form>{% endblock %}
+{% extends "layout.html" %}
+{% block title %}Buy{% endblock %}
+{% block main %}
+<div class="page-head rise d1">
+  <h1>Buy shares</h1>
+  <p>Trades execute at the live market price.</p>
+</div>
+<section class="card form-card rise d2">
+  <form action="/buy" method="post">
+    <div class="field">
+      <label for="symbol">Stock symbol</label>
+      <input class="input input-symbol" id="symbol" autocomplete="off" autofocus name="symbol" placeholder="e.g. AAPL" type="text" required>
+    </div>
+    <div class="field">
+      <label for="shares">Number of shares</label>
+      <input class="input" id="shares" autocomplete="off" min="1" name="shares" placeholder="e.g. 5" type="number" required>
+      <p class="help">Whole shares only. The total is checked against your cash before anything is bought.</p>
+    </div>
+    <div class="form-foot">
+      <button class="btn btn-primary" type="submit">Buy shares</button>
+      <a class="btn btn-ghost" href="/">Cancel</a>
+    </div>
+  </form>
+</section>
+{% endblock %}

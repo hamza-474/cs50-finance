@@ -1,1 +1,14 @@
-{% extends "layout.html" %}{% block title %}    Quoted{% endblock %}{% block main %}    <p>A share of {{ name }} ({{ symbol }}) costs {{ price | usd }}.</p>{% endblock %}
+{% extends "layout.html" %}
+{% block title %}Quoted{% endblock %}
+{% block main %}
+<section class="card quote-card rise d1">
+  <span class="sym">{{ symbol }}</span>
+  <h1>{{ name }}</h1>
+  <p class="price">{{ price | usd }}</p>
+  <p class="per">per share, right now</p>
+  <div class="quote-actions">
+    <a class="btn btn-primary btn-lg" href="/buy">Buy {{ symbol }}</a>
+    <a class="btn btn-ghost btn-lg" href="/quote">Another quote</a>
+  </div>
+</section>
+{% endblock %}

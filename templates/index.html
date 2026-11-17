@@ -1,1 +1,85 @@
-{% extends "layout.html" %}{% block title %}    Portfolio{% endblock %}{% block main %}    <table class="table table-striped">        <thead>            <tr>                <th class="text-start">Symbol</th>                <th class="text-start">Name</th>                <th class="text-end">Shares</th>                <th class="text-end">Price</th>                <th class="text-end">TOTAL</th>            </tr>        </thead>        <tbody>            {% for stock in stocks %}                <tr>                    <td class="text-start">{{ stock.symbol }}</td>                    <td class="text-start">{{ stock.name }}</td>                    <td class="text-end">{{ stock.shares }}</td>                    <td class="text-end">{{ stock.price | usd }}</td>                    <td class="text-end">{{ stock.total | usd }}</td>                </tr>            {% endfor %}        </tbody>        <tfoot>            <tr>                <td class="border-0 fw-bold text-end" colspan="4">Cash</td>                <td class="border-0 text-end">{{ cash | usd }}</td>            </tr>            <tr>                <td class="border-0 fw-bold text-end" colspan="4">TOTAL</td>                <td class="border-0 fw-bold text-end">{{ total | usd }}</td>            </tr>        </tfoot>    </table>    <p><a href="/add_cash">Add Cash</a></p>{% endblock %}
+{% extends "layout.html" %}
+{% block title %}Portfolio{% endblock %}
+{% block main %}
+<section class="hero rise d1">
+  <svg class="chartline" viewBox="0 0 600 180" preserveAspectRatio="none" aria-hidden="true">
+    <polyline points="0,150 70,128 140,138 210,96 280,108 350,64 420,78 490,38 560,50 600,18" fill="none" stroke="#2fce92" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="590" cy="22" r="6" fill="#f0a832"/>
+    <circle cx="590" cy="22" r="11" fill="none" stroke="#f0a832" stroke-width="1.5" opacity=".55"/>
+  </svg>
+  <p class="label">Portfolio value</p>
+  <p class="total">$<span data-count="{{ total }}">{{ total | usd | replace("$", "") }}</span></p>
+  <p class="hint">Your shares at today's prices, plus the cash in your account.</p>
+  <div class="hero-stats">
+    <div class="chip"><p class="k">Cash available</p><p class="v">$<span data-count="{{ cash }}">{{ cash | usd | replace("$", "") }}</span></p></div>
+    <div class="chip"><p class="k">Companies held</p><p class="v">{{ stocks | length }}</p></div>
+  </div>
+  <div class="cta-row">
+    <a class="btn btn-hero" href="/buy">Buy shares</a>
+    <a class="btn btn-hero-outline" href="/quote">Get a quote</a>
+    <a class="btn btn-hero-outline" href="/add_cash">Add cash</a>
+  </div>
+</section>
+
+<section class="card rise d2" style="margin-top: 18px;">
+  <h2>Your holdings</h2>
+  <p class="sub">Re-valued at live prices every time this page loads.</p>
+  {% if stocks %}
+  <div class="table-wrap">
+    <table class="data">
+      <thead>
+        <tr><th>Symbol</th><th>Name</th><th class="r">Shares</th><th class="r">Price</th><th class="r">Total</th></tr>
+      </thead>
+      <tbody>
+        {% for stock in stocks %}
+        <tr>
+          <td><span class="sym">{{ stock.symbol }}</span></td>
+          <td>{{ stock.name }}</td>
+          <td class="r">{{ stock.shares }}</td>
+          <td class="r">{{ stock.price | usd }}</td>
+          <td class="r"><b>{{ stock.total | usd }}</b></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      <tfoot>
+        <tr><td colspan="4" class="r">Cash</td><td class="r">{{ cash | usd }}</td></tr>
+        <tr><td colspan="4" class="r">TOTAL</td><td class="r">{{ total | usd }}</td></tr>
+      </tfoot>
+    </table>
+  </div>
+  {% else %}
+  <div class="empty">
+    <div class="big" aria-hidden="true">📈</div>
+    <h3>No shares yet</h3>
+    <p>You have {{ cash | usd }} in virtual cash. Look up a price, then buy your first shares.</p>
+    <a class="btn btn-primary" href="/quote">Get a quote</a>
+  </div>
+  {% endif %}
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Count-up animation for the money figures (progressive enhancement:
+// the server-rendered values are already in place if JS is off).
+(function () {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var fmt = function (n) {
+    return n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  };
+  document.querySelectorAll("[data-count]").forEach(function (el) {
+    var target = parseFloat(el.getAttribute("data-count"));
+    if (isNaN(target)) return;
+    var start = null, dur = 900;
+    function tick(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(target * eased);
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  });
+})();
+</script>
+{% endblock %}

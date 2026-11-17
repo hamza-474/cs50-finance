@@ -1,1 +1,20 @@
-{% extends "layout.html" %}{% block title %}    Add Cash{% endblock %}{% block main %}    <form action="/add_cash" method="post">        <div class="mb-3">            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" min="1" name="amount" placeholder="Amount" step="0.01" type="number">        </div>        <button class="btn btn-primary" type="submit">Add Cash</button>    </form>{% endblock %}
+{% extends "layout.html" %}
+{% block title %}Add Cash{% endblock %}
+{% block main %}
+<div class="page-head rise d1">
+  <h1>Add cash</h1>
+  <p>Top up your virtual balance — no card required, it's play money.</p>
+</div>
+<section class="card form-card rise d2">
+  <form action="/add_cash" method="post">
+    <div class="field">
+      <label for="amount">Amount (USD)</label>
+      <input class="input" id="amount" autocomplete="off" autofocus min="1" name="amount" placeholder="e.g. 500" step="0.01" type="number" required>
+    </div>
+    <div class="form-foot">
+      <button class="btn btn-primary" type="submit">Add cash</button>
+      <a class="btn btn-ghost" href="/">Cancel</a>
+    </div>
+  </form>
+</section>
+{% endblock %}
