@@ -11,8 +11,8 @@
   --ink: #16233a;
   --ink-soft: #5b6b84;
   --line: rgba(255, 255, 255, .65);
-  --glass: rgba(255, 255, 255, .5);
-  --glass-strong: rgba(255, 255, 255, .66);
+  --glass: rgba(163, 240, 205, .34);
+  --glass-strong: rgba(163, 240, 205, .48);
   --red: #e35d5d;
   --red-soft: rgba(255, 236, 236, .9);
   --radius: 20px;
@@ -132,7 +132,7 @@ a:hover { text-decoration: underline; }
 }
 /* Hover: the panel lifts, expands a touch and turns crystal clear */
 .card:hover {
-  background: rgba(255, 255, 255, .9);
+  background: rgba(190, 248, 218, .78);
   box-shadow: 0 4px 10px rgba(6, 12, 30, .1), 0 34px 60px -22px rgba(6, 12, 30, .5);
   scale: 1.012;
   animation-play-state: paused;
