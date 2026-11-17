@@ -9,10 +9,10 @@
   --violet: #6d5df6;
   --gold: #f0a832;
   --ink: #16233a;
-  --ink-soft: #5b6b84;
+  --ink-soft: #41546e;
   --line: rgba(255, 255, 255, .65);
-  --glass: rgba(163, 240, 205, .34);
-  --glass-strong: rgba(163, 240, 205, .48);
+  --glass: rgba(198, 248, 220, .88);
+  --glass-strong: rgba(205, 250, 225, .9);
   --red: #e35d5d;
   --red-soft: rgba(255, 236, 236, .9);
   --radius: 20px;
@@ -132,7 +132,7 @@ a:hover { text-decoration: underline; }
 }
 /* Hover: the panel lifts, expands a touch and turns crystal clear */
 .card:hover {
-  background: rgba(190, 248, 218, .78);
+  background: rgba(213, 252, 231, .95);
   box-shadow: 0 4px 10px rgba(6, 12, 30, .1), 0 34px 60px -22px rgba(6, 12, 30, .5);
   scale: 1.012;
   animation-play-state: paused;
@@ -250,7 +250,8 @@ table.data tfoot td { font-weight: 750; background: rgba(255, 255, 255, .45); }
 .auth-head .brand-mark { width: 54px; height: 54px; border-radius: 15px; margin: 0 auto 12px; }
 .auth-head h1 { font-size: 22px; margin: 0 0 4px; letter-spacing: -.02em; }
 .auth-head p { margin: 0; color: var(--ink-soft); font-size: 14px; }
-.auth-alt { text-align: center; font-size: 14px; color: var(--ink-soft); margin-top: 18px; }
+.auth-alt { text-align: center; font-size: 14px; color: var(--ink); margin-top: 18px; }
+.auth-alt a { color: #0a7a54; font-weight: 700; }
 .cash-note {
   display: flex; gap: 10px; align-items: center;
   background: rgba(253, 246, 233, .9); border: 1px solid #f0dcb2; color: #6d4c08;
