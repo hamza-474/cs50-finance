@@ -1,1 +1,37 @@
-{% extends "layout.html" %}{% block title %}    History{% endblock %}{% block main %}    <table class="table table-striped">        <thead>            <tr>                <th class="text-start">Type</th>                <th class="text-start">Symbol</th>                <th class="text-end">Shares</th>                <th class="text-end">Price</th>                <th class="text-end">Transacted</th>            </tr>        </thead>        <tbody>            {% for transaction in transactions %}                <tr>                    <td class="text-start">{{ transaction.type }}</td>                    <td class="text-start">{{ transaction.symbol }}</td>                    <td class="text-end">{{ transaction.shares }}</td>                    <td class="text-end">{{ transaction.price | usd }}</td>                    <td class="text-end">{{ transaction.transacted }}</td>                </tr>            {% endfor %}        </tbody>    </table>{% endblock %}
+{% extends "layout.html" %}
+{% block title %}History{% endblock %}
+{% block main %}
+<div class="page-head rise d1">
+  <h1>History</h1>
+  <p>Every trade you have ever made on C$50 Finance.</p>
+</div>
+<section class="card rise d2">
+  {% if transactions %}
+  <div class="table-wrap">
+    <table class="data">
+      <thead>
+        <tr><th>Type</th><th>Symbol</th><th class="r">Shares</th><th class="r">Price</th><th class="r">Transacted</th></tr>
+      </thead>
+      <tbody>
+        {% for transaction in transactions %}
+        <tr>
+          <td><span class="pill {{ 'pill-buy' if transaction.type == 'BUY' else 'pill-sell' }}">{{ transaction.type }}</span></td>
+          <td><span class="sym">{{ transaction.symbol }}</span></td>
+          <td class="r">{{ transaction.shares }}</td>
+          <td class="r">{{ transaction.price | usd }}</td>
+          <td class="r">{{ transaction.transacted }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="empty">
+    <div class="big" aria-hidden="true">🧾</div>
+    <h3>No trades yet</h3>
+    <p>Your buys and sells will appear here, newest first.</p>
+    <a class="btn btn-primary" href="/buy">Make your first trade</a>
+  </div>
+  {% endif %}
+</section>
+{% endblock %}

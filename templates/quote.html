@@ -1,1 +1,18 @@
-{% extends "layout.html" %}{% block title %}    Quote{% endblock %}{% block main %}    <form action="/quote" method="post">        <div class="mb-3">            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="symbol" placeholder="Symbol" type="text">        </div>        <button class="btn btn-primary" type="submit">Quote</button>    </form>{% endblock %}
+{% extends "layout.html" %}
+{% block title %}Quote{% endblock %}
+{% block main %}
+<div class="page-head rise d1">
+  <h1>Get a quote</h1>
+  <p>Live prices, straight from the market feed.</p>
+</div>
+<section class="card form-card rise d2">
+  <form action="/quote" method="post">
+    <div class="field">
+      <label for="symbol">Stock symbol</label>
+      <input class="input input-symbol" id="symbol" autocomplete="off" autofocus name="symbol" placeholder="e.g. AAPL" type="text" required>
+      <p class="help">Try AAPL (Apple), MSFT (Microsoft), TSLA (Tesla) or NFLX (Netflix).</p>
+    </div>
+    <button class="btn btn-primary btn-block" type="submit">Look up price</button>
+  </form>
+</section>
+{% endblock %}

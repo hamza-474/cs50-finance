@@ -1,1 +1,30 @@
-{% extends "layout.html" %}{% block title %}    Sell{% endblock %}{% block main %}    <form action="/sell" method="post">        <div class="mb-3">            <select class="form-select mx-auto w-auto" name="symbol">                <option disabled selected value="">Symbol</option>                {% for stock in stocks %}                    <option value="{{ stock.symbol }}">{{ stock.symbol }}</option>                {% endfor %}            </select>        </div>        <div class="mb-3">            <input autocomplete="off" class="form-control mx-auto w-auto" min="1" name="shares" placeholder="Shares" type="number">        </div>        <button class="btn btn-primary" type="submit">Sell</button>    </form>{% endblock %}
+{% extends "layout.html" %}
+{% block title %}Sell{% endblock %}
+{% block main %}
+<div class="page-head rise d1">
+  <h1>Sell shares</h1>
+  <p>Sell from the companies you already own, at the live price.</p>
+</div>
+<section class="card form-card rise d2">
+  <form action="/sell" method="post">
+    <div class="field">
+      <label for="symbol">Stock symbol</label>
+      <select class="input" id="symbol" name="symbol" required>
+        <option disabled selected value="">Choose a company you own</option>
+        {% for stock in stocks %}
+        <option value="{{ stock.symbol }}">{{ stock.symbol }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="field">
+      <label for="shares">Number of shares</label>
+      <input class="input" id="shares" autocomplete="off" min="1" name="shares" placeholder="e.g. 2" type="number" required>
+      <p class="help">You can't sell more shares than you own — the app checks first.</p>
+    </div>
+    <div class="form-foot">
+      <button class="btn btn-sell" type="submit">Sell shares</button>
+      <a class="btn btn-ghost" href="/">Cancel</a>
+    </div>
+  </form>
+</section>
+{% endblock %}

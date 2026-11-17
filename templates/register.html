@@ -1,1 +1,32 @@
-{% extends "layout.html" %}{% block title %}    Register{% endblock %}{% block main %}    <form action="/register" method="post">        <div class="mb-3">            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="username" placeholder="Username" type="text">        </div>        <div class="mb-3">            <input class="form-control mx-auto w-auto" name="password" placeholder="Password" type="password">        </div>        <div class="mb-3">            <input class="form-control mx-auto w-auto" name="confirmation" placeholder="Password (again)" type="password">        </div>        <button class="btn btn-primary" type="submit">Register</button>    </form>{% endblock %}
+{% extends "layout.html" %}
+{% block title %}Register{% endblock %}
+{% block main %}
+<div class="auth-wrap">
+  <section class="card auth-card rise d1">
+    <div class="auth-head">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
+      </span>
+      <h1>Start trading</h1>
+      <p>Create your account and trade with virtual money at real prices.</p>
+    </div>
+    <div class="cash-note">💰 Every new account starts with <b>&nbsp;$10,000.00&nbsp;</b> in virtual cash.</div>
+    <form action="/register" method="post">
+      <div class="field">
+        <label for="username">Username</label>
+        <input class="input" id="username" autocomplete="off" autofocus name="username" type="text" required>
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input class="input" id="password" name="password" type="password" required>
+      </div>
+      <div class="field">
+        <label for="confirmation">Password (again)</label>
+        <input class="input" id="confirmation" name="confirmation" type="password" required>
+      </div>
+      <button class="btn btn-primary btn-block" type="submit">Create account</button>
+    </form>
+    <p class="auth-alt">Already trading? <a href="/login">Log in</a></p>
+  </section>
+</div>
+{% endblock %}

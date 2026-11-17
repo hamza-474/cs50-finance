@@ -4,6 +4,10 @@ A complete stock-trading web app: create an account, get **$10,000** in virtual 
 
 Built as the capstone web problem of **Harvard CS50x Week 9 (Flask)**, where it passed all **21/21** automated checks, and deployed here as a live web service.
 
+The interface was redesigned from the course's stock Bootstrap templates into a custom **Glass Modern** design system — frosted-glass panels over a living aurora gradient, Inter typeface, animated portfolio figures, and a fully responsive layout — with no change to the app's behaviour.
+
+![C$50 Finance portfolio](docs/portfolio.png)
+
 ## Features
 
 - **Accounts** — register / log in / log out with hashed passwords; every portfolio is private to its owner.
